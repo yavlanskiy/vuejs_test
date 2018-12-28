@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <!-- версия для разработки, отображает полезные предупреждения в консоли -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VUE JS</title>
+</head>
+<body>
+
+<div id="app">
+    <h2>Counter = {{counter}}</h2>
+    <button v-on:click = "riseCounter" >Increment</button>
+
+    <hr>
+
+    <h2 v-on:mouseover="blink">Counter2 = {{counter2}}</h2>
+    <!--js можно сразу писать тут-->
+    <button v-on:click = "counter2++" >Increment2</button>
+
+    <hr>
+
+    <h2>{{event}} = {{counter3}}</h2>
+    <button v-on:click = "count(5, 'Изменено на 5', $event)">Увеличит на 5</button>
+    <button v-on:click = "count(10, 'Изменено на 10',$event)">Увеличит на 10</button>
+</div>
+
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            counter: 0,
+            counter2:10,
+            counter3:0,
+            event:'Счётчик 3'
+        },
+        methods:{
+            riseCounter: function () {
+                this.counter++
+            },
+            blink: function (event) {
+                event.target.style.color = 'RED'
+            },
+            count:function (num, str, event) {
+                this.event = str;
+                this.counter3 += num;
+
+                if (num=== 5){
+                    event.target.style.color = 'RED'
+                } else if (num === 10) {
+                    event.target.style.color = 'BLUE'
+                }
+            }
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <!-- версия для разработки, отображает полезные предупреждения в консоли -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>VUE JS</title>
+</head>
+<body>
+
+<div id="app">
+    <hr>
+    <h2 v-on:mousemove = "move" >
+        X:{{ x }} \ Y: {{y}}
+        <span v-on:mousemove.stop>Не изменять</span>
+    </h2>
+
+    <hr>
+
+<input type="text" v-on:keyup.enter="alertEvent">
+
+
+</div>
+
+
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            x: 0,
+            y: 0
+        },
+        methods:{
+            move: function (event) {
+                this.x = event.clientX
+                this.y = event.clientY
+            },
+            alertEvent:function (event) {
+                alert(event.target.value)
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
